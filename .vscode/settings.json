@@ -16,6 +16,9 @@
 	"[toml]": {
 		"editor.defaultFormatter": "rust-lang.rust-analyzer"
 	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
 	"editor.formatOnSave": true,
 	"editor.formatOnPaste": true,
 	"editor.codeActionsOnSave": {
