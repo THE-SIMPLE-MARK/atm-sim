@@ -9,7 +9,9 @@
 		"build": "tauri build",
 		"lint": "biome lint",
 		"lint:fix": "biome lint --write",
-		"format": "biome format --write",
+		"biome:format": "biome format --write",
+		"rust:format": "cd src-tauri && cargo fmt",
+		"format": "bun run biome:format && bun run rust:format",
 		"vite:dev": "vite",
 		"vite:build": "vue-tsc --noEmit && vite build",
 		"vite:preview": "vite preview"
