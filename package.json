@@ -6,6 +6,7 @@
 	"scripts": {
 		"tauri": "tauri",
 		"dev": "tauri dev",
+		"db:dev:init": "docker compose up -d",
 		"build": "tauri build",
 		"lint": "biome lint",
 		"lint:fix": "biome lint --write",
@@ -28,6 +29,7 @@
 		"@tauri-apps/cli": "^2",
 		"@vitejs/plugin-vue": "^5.2.1",
 		"biome": "^0.3.3",
+		"mkcert": "^2.2.0",
 		"typescript": "~5.6.2",
 		"vite": "^6.0.3",
 		"vue-tsc": "^2.1.10"
