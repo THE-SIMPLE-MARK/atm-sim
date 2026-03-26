@@ -1,27 +1,23 @@
 {
-  // See https://go.microsoft.com/fwlink/?LinkId=733558
-  // for the documentation about the tasks.json format
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "vite:dev",
-      "type": "shell",
-      // `dev` keeps running in the background
-      // ideally you should also configure a `problemMatcher`
-      // see https://code.visualstudio.com/docs/editor/tasks#_can-a-background-task-be-used-as-a-prelaunchtask-in-launchjson
-      "isBackground": true,
-      "command": "bun",
-      "args": [
-        "vite:dev"
-      ]
-    },
-    {
-      "label": "vite:build",
-      "type": "shell",
-      "command": "bun",
-      "args": [
-        "vite:build"
-      ]
-    }
-  ]
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "vite:dev",
+			"type": "shell",
+			// `dev` keeps running in the background
+			// ideally you should also configure a `problemMatcher`
+			// see https://code.visualstudio.com/docs/editor/tasks#_can-a-background-task-be-used-as-a-prelaunchtask-in-launchjson
+			"isBackground": true,
+			"command": "bun",
+			"args": ["vite:dev"]
+		},
+		{
+			"label": "vite:build",
+			"type": "shell",
+			"command": "bun",
+			"args": ["vite:build"]
+		}
+	]
 }
