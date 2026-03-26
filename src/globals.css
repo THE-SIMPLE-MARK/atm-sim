@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+@theme {
+	--color-background: #F8FAFC;
+	--color-foreground: #0A0F14;
+	--color-accent: #059669;
+	--color-secondary: #E2E8F0
+}
+
+[data-theme="dark"] {
+	--color-background: #0A0F14;
+	--color-foreground: #F3F4F6;
+	--color-accent: #10B981;
+	--color-secondary: #1F2937
+}
+
+body {
+	@apply bg-background;
+	@apply text-foreground;
+}

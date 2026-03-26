@@ -14,8 +14,8 @@ async function greet() {
 <template>
   <main class="w-full h-screen flex flex-col items-center justify-center gap-2">
     <form class="flex flex-col gap-2" @submit.prevent="greet">
-      <input class="bg-gray-100 w-24" v-model="name" placeholder="Enter a name..." />
-      <button class="bg-blue-200 h-12" type="submit">Greet</button>
+      <input class="bg-secondary w-24" v-model="name" placeholder="Enter a name..." />
+      <button class="bg-accent h-12" type="submit">Greet</button>
     </form>
 
     <p>{{ greetMsg }}</p>
