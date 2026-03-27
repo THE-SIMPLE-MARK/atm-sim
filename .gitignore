@@ -24,3 +24,6 @@ dist-ssr
 # Local certificates
 certs/*
 !certs/pg_hba.conf
+
+src-tauri/migrations/*
+!src-tauri/migrations/.keep

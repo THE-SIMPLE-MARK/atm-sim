@@ -15,13 +15,13 @@ services:
       - ./certs/pg_hba.conf:/var/lib/postgresql/certs/pg_hba.conf:ro
       - ./certs/server.crt:/var/lib/postgresql/certs/server.crt:ro
       - ./certs/server.key:/var/lib/postgresql/certs/server.key:ro
-      - ./certs/rootCA.pem:/var/lib/postgresql/certs/rootCA.pem:ro
+      - ./certs/ca.crt:/var/lib/postgresql/certs/ca.crt:ro
     command: >-
       postgres
       -c ssl=on
       -c ssl_cert_file=/var/lib/postgresql/certs/server.crt
       -c ssl_key_file=/var/lib/postgresql/certs/server.key
-      -c ssl_ca_file=/var/lib/postgresql/certs/rootCA.pem
+      -c ssl_ca_file=/var/lib/postgresql/certs/ca.crt
       -c hba_file=/var/lib/postgresql/certs/pg_hba.conf
 volumes:
   postgres:

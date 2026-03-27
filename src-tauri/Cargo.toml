@@ -23,6 +23,9 @@ tauri-plugin-opener = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 tauri-plugin-prevent-default = "4"
+diesel = { version = "2.3.7", features = ["postgres"] }
+diesel_migrations = "2.2.0"
+dotenvy = "0.15.7"
 
 [features]
 debug = []
