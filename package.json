@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"tauri": "tauri",
-		"dev": "tauri dev",
+		"dev": "tauri dev --features debug",
 		"db:dev:init": "docker compose up -d",
 		"build": "tauri build",
 		"lint": "biome lint",
@@ -22,7 +22,8 @@
 		"@tauri-apps/api": "^2.10.1",
 		"@tauri-apps/plugin-opener": "^2.5.3",
 		"tailwindcss": "^4.2.2",
-		"vue": "^3.5.31"
+		"vue": "^3.5.31",
+		"vue-router": "5.0.4"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.9",
