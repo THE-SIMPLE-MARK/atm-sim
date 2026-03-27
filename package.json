@@ -11,7 +11,7 @@
 		"lint": "biome lint",
 		"lint:fix": "biome lint --write",
 		"biome:format": "biome format --write",
-		"rust:format": "cd src-tauri && cargo fmt",
+		"rust:format": "cd app/src-tauri && cargo fmt",
 		"format": "bun run biome:format && bun run rust:format",
 		"vite:dev": "vite",
 		"vite:build": "vue-tsc --noEmit && vite build",
