@@ -1,0 +1,11 @@
+FROM rust:latest
+
+WORKDIR /app
+
+RUN cargo install diesel_cli --no-default-features --features postgres
+
+COPY backend/diesel.toml ./diesel.toml
+COPY backend/src/schema.rs ./src/schema.rs
+COPY backend/migrations ./migrations
+
+CMD sh -c "diesel migration generate --diff-schema docker-bootstrap && diesel migration run"

@@ -1,0 +1,9 @@
+[package]
+name = "backend"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+shared = { path = "../shared" }
+diesel = { version = "2.3.7", features = ["postgres"] }
+
