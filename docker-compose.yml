@@ -1,50 +1,56 @@
-name: atm-sim-dev
+name: atm-sim
 
 volumes:
   postgres:
 
+networks:
+  internal:
+    driver: bridge
+
 x-database-url: &database-url
-  DATABASE_URL: postgres://postgres:postgres@postgres:5432/atm-sim?sslmode=disable
+  DATABASE_URL: postgres://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}
 
 services:
   postgres:
     image: postgres:17
     restart: "unless-stopped"
     environment:
-      POSTGRES_DB: atm-sim
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    ports:
-      - 5432:5432
-    volumes:
-      - postgres:/var/lib/postgresql/data
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER}"]
       interval: 10s
       timeout: 5s
       retries: 5
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - internal
 
   migrations:
     build:
       dockerfile: backend/Dockerfile.migrations
+      context: .
+    environment:
+      <<: *database-url
     depends_on:
       postgres:
         condition: service_healthy
-    environment:
-      <<: *database-url
     restart: "no"
+    networks:
+      - internal
 
   backend:
     build:
       dockerfile: backend/Dockerfile
-    depends_on:
-      migrations:
-        condition: service_completed_successfully
-    restart: "unless-stopped"
+      context: .
     environment:
       <<: *database-url
-    ports:
-      - 3000:3000
-
-
-
+      BACKEND_ADDRESS: "${BACKEND_ADDRESS}"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - internal
+    restart: "unless-stopped"

@@ -14,6 +14,7 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]
 tauri-build = { version = "2", features = ["isolation"] }
+dotenvy = "0.15.7"
 
 [dependencies]
 tauri = { version = "2", features = ["isolation"] }
@@ -21,6 +22,9 @@ tauri-plugin-opener = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 tauri-plugin-prevent-default = "4"
+reqwest = { version = "0.11", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
+shared = { path = "../../shared" }
 
 [features]
 debug = []

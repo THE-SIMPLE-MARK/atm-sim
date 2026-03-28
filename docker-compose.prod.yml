@@ -1,0 +1,14 @@
+services:
+  postgres:
+    restart: always
+
+  migrations:
+    restart: "no"
+
+  backend:
+    restart: always
+    depends_on:
+      migrations:
+        condition: service_completed_successfully
+    ports:
+      - "${BACKEND_PORT}:3000"

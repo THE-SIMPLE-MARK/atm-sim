@@ -6,4 +6,10 @@ edition = "2024"
 [dependencies]
 shared = { path = "../shared" }
 diesel = { version = "2.3.7", features = ["postgres"] }
-
+axum = "0.8.8"
+tokio = { version = "1.50.0", features = ["rt-multi-thread"] }
+argon2 = { version = "0.5.3", features = ["zeroize", "std"] }
+password-hash = "0.6.0"
+rand_core = "0.10.0"
+cuid2 = "0.1.4"
+dotenvy = "0.15.7"
