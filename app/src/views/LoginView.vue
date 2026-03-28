@@ -1,7 +1,18 @@
 <script setup lang="ts">
+import { invoke } from "@tauri-apps/api/core"
 import { ref } from "vue"
 
 const shouldShowLogin = ref<boolean>(false)
+
+const accountId = ref<string>("")
+const pin = ref<string>("")
+
+async function onSubmit() {
+	await invoke("verify_pin", {
+		accountId: accountId.value,
+		pin: pin.value,
+	}).catch(e => console.error("Error caught", e))
+}
 </script>
 
 <template>
@@ -10,17 +21,29 @@ const shouldShowLogin = ref<boolean>(false)
 		class="w-full h-screen flex justify-center items-center"
 	>
 		<div v-if="!shouldShowLogin"><p>Tap anywhere to begin...</p></div>
-		<div v-else class="flex flex-col gap-2 items-center">
-			<h1 class="text-2xl">Please enter your PIN:</h1>
+		<form
+			@submit.prevent="onSubmit"
+			v-else
+			class="flex flex-col gap-2 items-center"
+		>
+			<h1 class="text-2xl">Account ID</h1>
+			<input
+				type="text"
+				class="bg-secondary w-30 h-fit p-2 text-4xl text-center appearance-none"
+				maxlength="4"
+				pattern="\d*"
+				v-model="accountId"
+			>
+
+			<h1 class="text-2xl">PIN</h1>
 			<input
 				type="password"
 				class="bg-secondary w-30 h-fit p-2 text-4xl text-center"
-				value="1234"
 				maxlength="4"
+				v-model="pin"
 			>
-			<p>Processing...</p>
-			<RouterLink to="/home">Go to home</RouterLink>
-			<RouterLink to="/create-account">Don't have an account?</RouterLink>
-		</div>
+
+			<button type="submit">Submit</button>
+		</form>
 	</main>
 </template>
