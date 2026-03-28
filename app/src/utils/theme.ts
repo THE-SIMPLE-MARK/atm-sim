@@ -2,16 +2,21 @@ const LIGHT_START = 6
 const DARK_START = 18
 
 export function checkAndSetDarkMode() {
-	const hour = Date.now()
-	const isDark = hour < LIGHT_START && hour >= DARK_START
+	const hour = new Date().getHours()
+	const isDark = hour >= DARK_START || hour < LIGHT_START
 
-	document.documentElement.setAttribute("data-theme", isDark ? "light" : "dark")
+	document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light")
 }
 
 export function getMsUntilNextThemeChange() {
-	const time = Date.now()
-	const msUntilNextChange =
-		time < LIGHT_START ? LIGHT_START - time : DARK_START - time
+	const now = new Date()
+	const nextChange = new Date(now)
+	nextChange.setHours(
+		now.getHours() >= DARK_START ? LIGHT_START + 24 : DARK_START,
+		0,
+		0,
+		0,
+	)
 
-	return msUntilNextChange
+	return nextChange.getTime() - now.getTime()
 }
